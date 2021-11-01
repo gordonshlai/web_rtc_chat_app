@@ -40,8 +40,7 @@ const ContextProvider = ({ children }) => {
     // initiator is false because we are not initiating a call using this function
     // specifically for video chat, we need 2 more options as well, 'trickle' and 'stream'
     const peer = new Peer({ initiator: false, trickle: false, stream });
-
-    peer.on("signal", ({ data }) => {
+    peer.on("signal", (data) => {
       socket.emit("answercall", { signal: data, to: call.from });
     });
 
@@ -54,11 +53,11 @@ const ContextProvider = ({ children }) => {
     connectionRef.current = peer;
   };
 
-  const callUSer = (id) => {
+  const callUser = (id) => {
     // this time the initiator is true, becuase we are making the call using this function
     const peer = new Peer({ initiator: true, trickle: false, stream });
 
-    peer.on("signal", ({ data }) => {
+    peer.on("signal", (data) => {
       socket.emit("calluser", {
         userToCall: id,
         signalData: data,
@@ -84,7 +83,7 @@ const ContextProvider = ({ children }) => {
     setCallEnded(true);
 
     // destory the specific connection. stop receiving input from the user's camera and audio
-    connectionRef.current.destory();
+    connectionRef.current.destroy();
 
     window.location.reload(); // reloads the page and provide the user with a new id
   };
@@ -101,7 +100,7 @@ const ContextProvider = ({ children }) => {
         setName,
         callEnded,
         me,
-        callUSer,
+        callUser,
         leaveCall,
         answerCall,
       }}

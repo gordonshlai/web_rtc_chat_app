@@ -53,7 +53,7 @@ function Options({ children }) {
   return (
     <Container className={classes.container}>
       <Paper elevation={10} className={classes.paper}>
-        <form className={classes.root} noValidate autoComplete>
+        <form className={classes.root} noValidate autoComplete="true">
           <Grid container className={classes.gridContainer}>
             <Grid item xs={12} md={6} className={classes.padding}>
               <Typography gutterBottom variant="h6">

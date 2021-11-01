@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
 
   // userToCall: the id of the user that we are going to call
   socket.on("calluser", ({ userToCall, signalData, from, name }) => {
-    io.to(userToCall).emit("calluser", { singal: signalData, from, name });
+    io.to(userToCall).emit("calluser", { signal: signalData, from, name });
   });
 
   socket.on("answercall", (data) => {
